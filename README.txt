@@ -25,10 +25,8 @@ ____[Features/Non-features]
     -> pipe stuff into it
     ex.
         ----
-        $ echo "hello world" | sm 'x/world/ c/user/'
-        hello user
+        $ <pipe> | sm 'x/world/ c/user/'
         ----
-        
 - no builtin remote server stuff
 - no gui
 - no file access (stdin and stdout only)
