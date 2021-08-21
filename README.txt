@@ -1,4 +1,6 @@
-# sm -- Minimal subset of sam which only impliments command functionality
+
+sm -- Minimal subset of sam which only impliments command functionality
+------------------------------------------------------------------------------
 
 ____[Introduction]
 
