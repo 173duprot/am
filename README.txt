@@ -1,6 +1,6 @@
-/* sm -- Minimal subset of sam which only impliments command functionality */
+# sm -- Minimal subset of sam which only impliments command functionality
 
-[Introduction]
+____[Introduction]
 
 Sam is an amazing peice of software written by rob pike in the early 90's. It
 impliments a "structural command language" in an ed like fasion. 
@@ -14,7 +14,7 @@ a simple and ellagent implimentation of the sam command language, useful for
 bash scripting.
 
 
-[Features/Non-features]
+____[Features/Non-features]
 
 + >2000 sloc
 
