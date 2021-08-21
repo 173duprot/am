@@ -19,9 +19,7 @@ bash scripting.
 ____[Features/Non-features]
 
 + >2000 sloc
-
 + Sane buffers (Sed-like hold and pattern buffers)
-
 + Awk-like command implimentation
     -> feed it a file or a string
     -> pipe stuff into it
@@ -30,9 +28,7 @@ ____[Features/Non-features]
         $ echo "hello world" | sm 'x/world/ c/user/'
         hello user
         ----
-
-### and thats it
-
+        
 - no builtin remote server stuff
 - no gui
 - no file access (stdin and stdout only)
