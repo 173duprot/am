@@ -21,12 +21,13 @@ ____[Features/Non-features]
 + >2000 sloc
 + Sane buffers (Sed-like hold and pattern buffers)
 + Awk-like command implimentation
-    -> feed it a file or a string
+    -> feed it a string
     -> pipe stuff into it
     ex.
         ----
-        $ <pipe> | sm 'x/world/ c/user/'
+        $ <pipe> | sm [ "commands" | filename ]
         ----
++ The command part of the  (ie '')
 - no builtin remote server stuff
 - no gui
 - no file access (stdin and stdout only)
