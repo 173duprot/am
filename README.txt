@@ -1,34 +1,51 @@
+#include <stdio.h>
 
-sm -- Minimal subset of sam which only impliments command functionality
-------------------------------------------------------------------------------
+/* -- -settings --- */
+/*stack*/       int stack[10];
+/*rstack*/      void* rstack[20];
+/*dict*/        static struct entry
+                {
+                    char name[20];
+                    void* code[200];
+                } dict[1000];
 
-____[Introduction]
+/* text buffer */ char input_buffer[1000];
+/* code buffer */ void* code_buffer[100];
 
-Sam is an amazing peice of software written by rob pike in the early 90's. It
-impliments a "structural command language" in an ed like fasion. 
+/* --- code --- */
+#define NEXT \
+            ip = np;\
+            np += sizeof(void*);\
+            goto *ip;
 
-This on it's own is great, however sam comes with a multitude of extranious
-features that are dwaningly useful in the modern age. Not the least of which
-is a full gui, a built in method for remote server file acess, and much more.
+int main(void)
+{
+    int stack_ptr = 0;
+    int rstack_ptr = 0;
+    int dict_ptr = 0;
 
-This project looks to strip sam of most of these features, and leave behind
-a simple and ellagent implimentation of the sam command language, useful for
-bash scripting.
+    void* ip; // Instruction Pointer
+    void* np; // Next Pointer
 
+    code_buffer[0] = &&docol;
+    code_buffer[1] = &&bye;
+    printf("pointer 1: %p\npointer 2: %p\n", &code_buffer[0], &code_buffer[1]);
 
-____[Features/Non-features]
+    np = &code_buffer[0];
 
-+ >2000 sloc
-+ Sane buffers (Sed-like hold and pattern buffers)
-+ Awk-like command implimentation
-    -> feed it a string
-    -> pipe stuff into it
-    ex.
-        ----
-        $ <pipe> | sm [ "commands" | filename ]
-        ----
-+ The command part of the  (ie '')
-- no builtin remote server stuff
-- no gui
-- no file access (stdin and stdout only)
-- no ed-like command interface
+    NEXT
+
+    return 0;
+
+    docol:
+        printf("ip:%p\nnp:%p\n\n", ip, np);\
+        rstack[rstack_ptr++] = ip;
+        np = ip + 2;
+        printf("pointer 1: %p\npointer 2: %p\n\n", &code_buffer[0], &code_buffer[1]);
+        NEXT
+
+    bye:
+        printf("ip:%p\nnp:%p\n\n", ip, np);\
+        printf("byeeee o/");
+        return 0;
+};
