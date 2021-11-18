@@ -5,7 +5,7 @@
 /*rstack*/      void* rstack[20];
 /*dict*/        static struct entry
                 {
-                    char name[20];
+                    char name[40];
                     void* code[200];
                 } dict[1000];
 
@@ -15,34 +15,30 @@
 /* --- code --- */
 #define NEXT \
             ip = np;\
-            np += sizeof(void*);\
+            np = np + sizeof(void*);\
             goto *ip;
 
 int main(void)
 {
-    int stack_ptr = 0;
+    /*int stack_ptr = 0;
     int rstack_ptr = 0;
-    int dict_ptr = 0;
+    int dict_ptr = 0;*/
 
     void* ip; // Instruction Pointer
     void* np; // Next Pointer
 
     code_buffer[0] = &&docol;
-    code_buffer[1] = &&bye;
-    printf("pointer 1: %p\npointer 2: %p\n", &code_buffer[0], &code_buffer[1]);
+    code_buffer[1] = &&docol;
+    code_buffer[2] = &&bye;
 
     np = &code_buffer[0];
 
     NEXT
 
-    return 0;
-
     docol:
-        printf("ip:%p\nnp:%p\n\n", ip, np);\
-        rstack[rstack_ptr++] = ip;
-        np = ip + 2;
+        printf("ip:%p\nnp:%p\n\n", ip, np);
         printf("pointer 1: %p\npointer 2: %p\n\n", &code_buffer[0], &code_buffer[1]);
-        NEXT
+        return 0;
 
     bye:
         printf("ip:%p\nnp:%p\n\n", ip, np);\
